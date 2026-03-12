@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="card">
+      <h2>Generate Password</h2>
+
+      <label>Password Length</label>
+      <input type="number" id="length" value="12" min="6" max="64" />
+
+      <label>Generated Password</label>
+
+      <div class="password-wrapper">
+        <input type="password" id="password" readonly />
+        <span id="toggleEye">👁</span>
+      </div>
+
+      <div class="strength">
+        <div id="strengthBar"></div>
+        <p id="strengthText">Strength: -</p>
+      </div>
+
+      <button class="generate" id="generateBtn">+ Generate new password</button>
+
+      <div class="footer">
+        <button class="clear" id="clearBtn">Clear</button>
+
+        <button class="copy" id="copyBtn">Copy Password</button>
+      </div>
+    </div>
+
+    <div id="toast">Password copied!</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
