@@ -83,7 +83,7 @@ function generatePassword() {
   estimateCrackTime(password.length, chars.length);
 }
 
-/* ENTROPY + STRENGTH */
+/* STRENGTH METER */
 
 function checkStrength(password, charsetSize) {
   const entropy = password.length * Math.log2(charsetSize);
@@ -91,28 +91,31 @@ function checkStrength(password, charsetSize) {
   const bar = document.getElementById("strengthBar");
   const text = document.getElementById("strengthText");
 
-  let label, width, color;
+  let label = "";
+  let width = "";
+  let gradient = "";
 
   if (entropy < 40) {
     label = "Weak";
     width = "25%";
-    color = "#ff4d4d";
+    gradient = "linear-gradient(90deg,#ff6b6b,#ff4d4d,#e63946,#ff4d4d)";
   } else if (entropy < 60) {
     label = "Moderate";
     width = "50%";
-    color = "#ffa500";
+    gradient = "linear-gradient(90deg,#ffb347,#ffa500,#ff8c00,#ffa500)";
   } else if (entropy < 80) {
     label = "Strong";
     width = "75%";
-    color = "#9acd32";
+    gradient = "linear-gradient(90deg,#7bed9f,#2ecc71,#27ae60,#2ecc71)";
   } else {
     label = "Very Strong";
     width = "100%";
-    color = "#4caf50";
+    gradient = "linear-gradient(90deg,#2ecc71,#27ae60,#1e8449,#145a32)";
   }
 
   bar.style.width = width;
-  bar.style.background = color;
+  bar.style.background = gradient;
+  bar.style.backgroundSize = "200% 100%";
 
   text.innerText =
     "🧠 Entropy: " + entropy.toFixed(0) + " bits (" + label + ")";
@@ -123,24 +126,31 @@ function checkStrength(password, charsetSize) {
 function estimateCrackTime(length, charset) {
   const guesses = Math.pow(charset, length);
 
-  const guessesPerSecond = 1e12; // attacker speed
+  const guessesPerSecond = 1e12;
 
   const seconds = guesses / guessesPerSecond;
 
-  const years = seconds / (60 * 60 * 24 * 365);
-
   let result = "";
 
-  if (years < 1) {
-    result = (years * 365).toFixed(2) + " days";
-  } else if (years < 1000) {
-    result = years.toFixed(2) + " years";
+  if (seconds < 60) {
+    result = seconds.toFixed(2) + " Seconds";
+  } else if (seconds < 3600) {
+    result = (seconds / 60).toFixed(2) + " Minutes";
+  } else if (seconds < 86400) {
+    result = (seconds / 3600).toFixed(2) + " Hours";
+  } else if (seconds < 604800) {
+    result = (seconds / 86400).toFixed(2) + " Days";
+  } else if (seconds < 2592000) {
+    result = (seconds / 604800).toFixed(2) + " Weeks";
+  } else if (seconds < 31536000) {
+    result = (seconds / 2592000).toFixed(2) + " Months";
+  } else if (seconds < 3153600000) {
+    result = (seconds / 31536000).toFixed(2) + " Years";
   } else {
-    result = (years / 1000).toFixed(2) + " thousand years";
+    result = (seconds / 3153600000).toFixed(2) + " Centuries";
   }
 
-  document.getElementById("crackTime").innerHTML =
-    "⏳ Crack Time: " + result + "<br>⚡ Attacker Speed: 1T guesses/sec";
+  document.getElementById("crackDuration").innerText = result;
 }
 
 /* COPY PASSWORD */
@@ -201,7 +211,7 @@ clearBtn.addEventListener("click", () => {
   passwordField.value = "";
   document.getElementById("strengthBar").style.width = "0%";
   document.getElementById("strengthText").innerText = "Strength: -";
-  document.getElementById("crackTime").innerText = "";
+  document.getElementById("crackDuration").innerText = "-";
 });
 
 /* DARK MODE */

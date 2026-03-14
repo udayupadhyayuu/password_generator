@@ -70,6 +70,7 @@
               aria-label="Symbol information"
             >
               ⓘ
+
               <span class="tooltip">
                 Adds common symbols to increase password strength.<br />
                 Example: <b>T7@kP!9s</b>
@@ -95,6 +96,7 @@
               aria-label="Similar character information"
             >
               ⓘ
+
               <span class="tooltip">
                 Removes characters that look similar.<br />
                 Example removed: <b>O 0 l 1 I</b>
@@ -118,6 +120,7 @@
               aria-label="Ambiguous symbol information"
             >
               ⓘ
+
               <span class="tooltip">
                 Removes symbols some websites may reject.<br />
                 Removed: { } [ ] &lt; &gt; / \ ` ~<br />
@@ -147,7 +150,29 @@
         <p id="strengthText">Strength: -</p>
       </div>
 
-      <p id="crackTime">Crack Time: -</p>
+      <p id="crackTime">
+        ⏳ Crack Time: <span id="crackDuration">-</span>
+
+        <span class="info-icon" tabindex="0">
+          ⓘ
+          <span class="tooltip">
+            Time calculation reference:<br /><br />
+
+            1 minute = 60 seconds<br />
+            1 hour = 60 minutes<br />
+            1 day = 24 hours<br />
+            1 week = 7 days<br />
+            1 month ≈ 30 days<br />
+            1 year = 365 days<br />
+            1 century = 100 years<br /><br />
+
+            Crack time assumes attacker speed of<br />
+            ⚡ 1 trillion guesses per second.
+          </span>
+        </span>
+      </p>
+
+      <p id="attackSpeed">⚡ Attacker Speed: 1T guesses/sec</p>
 
       <button class="generate" id="generateBtn">+ Generate New Password</button>
 

@@ -225,7 +225,31 @@ width:0%;
 
 border-radius:6px;
 
-transition:all .4s ease;
+background:linear-gradient(
+90deg,
+#2ecc71,
+#27ae60,
+#1e8449,
+#145a32
+);
+
+background-size:200% 100%;
+
+transition:width .5s ease;
+
+animation:strengthMove 3s linear infinite;
+
+}
+
+@keyframes strengthMove{
+
+0%{
+background-position:200% 0%;
+}
+
+100%{
+background-position:0% 0%;
+}
 
 }
 
@@ -467,4 +491,13 @@ z-index:10;
 
 .info-icon:hover .tooltip{
 opacity:1;
+}
+
+#attackSpeed{
+
+margin-top:4px;
+font-size:13px;
+font-family:inherit;
+color:var(--text);
+
 }
