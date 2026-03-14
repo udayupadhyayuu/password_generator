@@ -11,11 +11,127 @@
 
   <body>
     <div class="card">
-      <h2>Generate Password</h2>
+      <h2>Password Generator</h2>
+
+      <div class="theme-toggle">
+        <span>🌙 Dark Mode</span>
+
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
 
       <label>Password Length: <span id="lengthValue">12</span></label>
 
       <input type="range" id="length" min="6" max="64" value="12" />
+
+      <button class="advanced-toggle" id="advancedToggle">
+        ⚙ Advanced Options
+      </button>
+
+      <div class="advanced" id="advancedOptions">
+        <h4>Character Types</h4>
+
+        <div class="switch-row">
+          <span>Uppercase (A-Z)</span>
+
+          <label class="switch">
+            <input type="checkbox" id="includeUpper" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <span>Lowercase (a-z)</span>
+
+          <label class="switch">
+            <input type="checkbox" id="includeLower" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <span>Numbers (0-9)</span>
+
+          <label class="switch">
+            <input type="checkbox" id="includeNumbers" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <span>
+            Symbols (!@#$%^&*)
+
+            <span
+              class="info-icon"
+              tabindex="0"
+              aria-label="Symbol information"
+            >
+              ⓘ
+              <span class="tooltip">
+                Adds common symbols to increase password strength.<br />
+                Example: <b>T7@kP!9s</b>
+              </span>
+            </span>
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" id="includeSymbols" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <h4>Restrictions</h4>
+
+        <div class="switch-row">
+          <span>
+            Exclude Similar Characters (O 0 l 1 I)
+
+            <span
+              class="info-icon"
+              tabindex="0"
+              aria-label="Similar character information"
+            >
+              ⓘ
+              <span class="tooltip">
+                Removes characters that look similar.<br />
+                Example removed: <b>O 0 l 1 I</b>
+              </span>
+            </span>
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" id="excludeSimilar" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row">
+          <span>
+            Exclude Ambiguous Symbols
+
+            <span
+              class="info-icon"
+              tabindex="0"
+              aria-label="Ambiguous symbol information"
+            >
+              ⓘ
+              <span class="tooltip">
+                Removes symbols some websites may reject.<br />
+                Removed: { } [ ] &lt; &gt; / \ ` ~<br />
+                Example safe password: <b>P8@T$k3!</b>
+              </span>
+            </span>
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" id="excludeAmbiguous" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
 
       <label>Generated Password</label>
 
@@ -31,7 +147,9 @@
         <p id="strengthText">Strength: -</p>
       </div>
 
-      <button class="generate" id="generateBtn">+ Generate new password</button>
+      <p id="crackTime">Crack Time: -</p>
+
+      <button class="generate" id="generateBtn">+ Generate New Password</button>
 
       <div class="footer">
         <button class="clear" id="clearBtn">Clear</button>
