@@ -52,15 +52,25 @@ clearBtn.addEventListener("click", () => {
   document.getElementById("strengthText").innerText = "Strength: -";
 });
 
+// toggleEye.addEventListener("click", () => {
+//   if (passwordField.type === "password") {
+//     passwordField.type = "text";
+
+//     toggleEye.textContent = "🙈";
+//   } else {
+//     passwordField.type = "password";
+
+//     toggleEye.textContent = "👁";
+//   }
+// });
+
 toggleEye.addEventListener("click", () => {
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
-
-    toggleEye.textContent = "🙈";
-  } else {
+  if (passwordField.type === "text") {
     passwordField.type = "password";
-
     toggleEye.textContent = "👁";
+  } else {
+    passwordField.type = "text";
+    toggleEye.textContent = "🙈";
   }
 });
 
