@@ -1,4 +1,6 @@
 const lengthInput = document.getElementById("length");
+const lengthValue = document.getElementById("lengthValue");
+
 const passwordField = document.getElementById("password");
 
 const generateBtn = document.getElementById("generateBtn");
@@ -52,18 +54,6 @@ clearBtn.addEventListener("click", () => {
   document.getElementById("strengthText").innerText = "Strength: -";
 });
 
-// toggleEye.addEventListener("click", () => {
-//   if (passwordField.type === "password") {
-//     passwordField.type = "text";
-
-//     toggleEye.textContent = "🙈";
-//   } else {
-//     passwordField.type = "password";
-
-//     toggleEye.textContent = "👁";
-//   }
-// });
-
 toggleEye.addEventListener("click", () => {
   if (passwordField.type === "text") {
     passwordField.type = "password";
@@ -108,7 +98,6 @@ function checkStrength(password) {
   }
 
   bar.style.width = width;
-
   bar.style.background = color;
 
   text.innerText = "Entropy: " + entropy.toFixed(0) + " bits (" + label + ")";
@@ -118,6 +107,10 @@ generateBtn.addEventListener("click", generatePassword);
 
 copyBtn.addEventListener("click", copyPassword);
 
-lengthInput.addEventListener("input", generatePassword);
+lengthInput.addEventListener("input", () => {
+  lengthValue.textContent = lengthInput.value;
+
+  generatePassword();
+});
 
 window.onload = generatePassword;

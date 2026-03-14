@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Password Generator</title>
@@ -14,19 +13,21 @@
     <div class="card">
       <h2>Generate Password</h2>
 
-      <label>Password Length</label>
-      <input type="number" id="length" value="12" min="6" max="64" />
+      <label>Password Length: <span id="lengthValue">12</span></label>
+
+      <input type="range" id="length" min="6" max="64" value="12" />
 
       <label>Generated Password</label>
 
       <div class="password-wrapper">
-        <!-- <input type="password" id="password" readonly /> -->
         <input type="text" id="password" readonly />
+
         <span id="toggleEye">🙈</span>
       </div>
 
       <div class="strength">
         <div id="strengthBar"></div>
+
         <p id="strengthText">Strength: -</p>
       </div>
 
